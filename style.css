@@ -1,0 +1,1388 @@
+/* ==========================
+   August 13th · To Jiao
+   Cinema Style
+========================== */
+
+
+*{
+
+    margin:0;
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+
+body{
+
+    background:#090909;
+
+    color:#fff;
+
+    font-family:
+
+    "Noto Serif SC",
+    "Songti SC",
+    serif;
+
+    overflow-x:hidden;
+
+}
+
+
+
+/* ==========================
+   胶片颗粒
+========================== */
+
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:20;
+
+    pointer-events:none;
+
+
+    opacity:.08;
+
+
+    background-image:
+
+    url(
+    "https://www.transparenttextures.com/patterns/noise.png"
+    );
+
+}
+
+
+
+
+
+/* ==========================
+   音乐按钮
+========================== */
+
+
+.music-btn{
+
+
+    position:fixed;
+
+    right:35px;
+
+    top:35px;
+
+
+    width:50px;
+
+    height:50px;
+
+
+    border-radius:50%;
+
+
+    border:
+
+    1px solid rgba(255,255,255,.5);
+
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    cursor:pointer;
+
+
+    z-index:50;
+
+
+    backdrop-filter:blur(10px);
+
+
+    background:
+
+    rgba(255,255,255,.08);
+
+
+    transition:.4s;
+
+
+}
+
+
+
+.music-btn:hover{
+
+
+    transform:scale(1.1);
+
+
+    background:white;
+
+    color:black;
+
+}
+
+
+
+
+
+/* ==========================
+   开场
+========================== */
+
+
+.hero{
+
+
+height:100vh;
+
+
+position:relative;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+overflow:hidden;
+
+
+text-align:center;
+
+
+}
+
+
+
+
+.hero-bg{
+
+
+position:absolute;
+
+
+inset:0;
+
+
+background:
+
+
+linear-gradient(
+
+rgba(0,0,0,.45),
+
+rgba(0,0,0,.8)
+
+),
+
+url("photos/01.jpg");
+
+
+background-size:cover;
+
+
+background-position:center;
+
+
+animation:
+
+heroMove 18s infinite;
+
+
+}
+
+
+
+
+.hero-content{
+
+
+position:relative;
+
+
+z-index:2;
+
+
+}
+
+
+
+@keyframes heroMove{
+
+
+0%{
+
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.8)
+),
+url("photos/01.jpg");
+
+
+}
+
+
+
+33%{
+
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.8)
+),
+url("photos/06.jpg");
+
+
+}
+
+
+
+66%{
+
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.8)
+),
+url("photos/09.jpg");
+
+
+}
+
+
+
+100%{
+
+
+background-image:
+
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.8)
+),
+url("photos/01.jpg");
+
+
+}
+
+
+
+}
+
+
+
+.hero h1{
+
+
+    font-size:
+
+    clamp(40px,8vw,90px);
+
+
+    font-weight:300;
+
+
+    letter-spacing:8px;
+
+
+    animation:
+
+    titleShow 2s ease;
+
+
+}
+
+
+
+.hero p{
+
+
+    margin-top:30px;
+
+
+    font-size:20px;
+
+
+    letter-spacing:4px;
+
+
+    opacity:.8;
+
+
+}
+
+
+
+.date{
+
+
+    margin-top:50px;
+
+
+    font-size:18px;
+
+
+    letter-spacing:8px;
+
+
+    color:#d6b36a;
+
+
+}
+
+
+
+
+@keyframes titleShow{
+
+
+from{
+
+opacity:0;
+
+transform:
+
+translateY(40px);
+
+}
+
+
+to{
+
+opacity:1;
+
+transform:
+
+translateY(0);
+
+}
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   每一幕
+========================== */
+
+
+.page{
+
+
+    height:100vh;
+
+
+    position:relative;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+
+.page img{
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    object-fit:cover;
+
+
+
+    filter:
+
+    brightness(.65)
+
+    saturate(.85);
+
+
+
+    transform:
+
+    scale(1.08);
+
+
+    transition:
+
+    transform 8s ease;
+
+
+}
+
+
+
+.page.active img{
+
+
+    transform:
+
+    scale(1);
+
+
+
+}
+
+
+
+
+
+
+/* 黑色遮罩 */
+
+
+.page::after{
+
+
+    content:"";
+
+
+    position:absolute;
+
+
+    inset:0;
+
+
+
+    background:
+
+    linear-gradient(
+
+    to top,
+
+    rgba(0,0,0,.85),
+
+    transparent 55%
+
+    );
+
+}
+
+
+
+
+
+
+
+/* ==========================
+   文字
+========================== */
+
+
+.caption{
+
+
+    position:absolute;
+
+
+    left:10%;
+
+
+    bottom:15%;
+
+
+
+    z-index:3;
+
+
+    max-width:650px;
+
+
+
+    opacity:0;
+
+
+    transform:
+
+    translateY(60px);
+
+
+    transition:
+
+    all 1.2s ease;
+
+
+
+}
+
+
+
+.page.active .caption{
+
+
+    opacity:1;
+
+
+    transform:
+
+    translateY(0);
+
+
+}
+
+
+
+
+
+.caption h2{
+
+
+    font-size:
+
+    clamp(35px,5vw,60px);
+
+
+
+    font-weight:300;
+
+
+
+    letter-spacing:6px;
+
+
+    margin-bottom:35px;
+
+
+
+}
+
+
+
+.caption p{
+
+
+    font-size:20px;
+
+
+    line-height:2.2;
+
+
+
+    letter-spacing:2px;
+
+
+
+    color:
+
+    rgba(255,255,255,.85);
+
+
+}
+
+
+
+
+
+
+/* ==========================
+   最后一幕
+========================== */
+
+
+.final .caption h2{
+
+
+    color:#d6b36a;
+
+
+}
+
+
+
+.final::after{
+
+
+background:
+
+linear-gradient(
+
+to top,
+
+rgba(0,0,0,.95),
+
+transparent
+
+);
+
+
+}
+
+
+
+
+
+
+
+
+/* ==========================
+   手机适配
+========================== */
+
+
+@media(max-width:768px){
+
+
+.music-btn{
+
+
+right:20px;
+
+top:20px;
+
+
+}
+
+
+
+.caption{
+
+
+left:8%;
+
+right:8%;
+
+bottom:12%;
+
+
+}
+
+
+
+.caption p{
+
+
+font-size:16px;
+
+
+}
+
+
+
+.caption h2{
+
+
+letter-spacing:3px;
+
+
+}
+
+
+.hero h1{
+
+
+letter-spacing:4px;
+
+
+}
+
+
+
+}
+/* ==========================
+   顶部电影进度条
+========================== */
+
+
+.progress{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+height:3px;
+
+width:0%;
+
+
+background:
+
+linear-gradient(
+
+90deg,
+
+#ffffff,
+
+#d6b36a
+
+);
+
+
+z-index:100;
+
+
+transition:.2s;
+
+
+}
+
+/* ==========================
+高级导航
+========================== */
+
+
+.nav{
+
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+
+height:90px;
+
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+
+padding:0 60px;
+
+
+z-index:40;
+
+
+font-size:14px;
+
+
+letter-spacing:5px;
+
+
+color:white;
+
+
+background:
+
+linear-gradient(
+
+to bottom,
+
+rgba(0,0,0,.35),
+
+transparent
+
+);
+
+
+
+}
+
+
+.logo{
+
+font-size:20px;
+
+font-weight:300;
+
+}
+
+
+.nav-right{
+
+opacity:.7;
+
+}
+
+
+
+
+@media(max-width:700px){
+
+
+.nav{
+
+padding:0 25px;
+
+height:70px;
+
+}
+
+
+
+.logo{
+
+font-size:16px;
+
+}
+
+
+
+}
+
+/* ==========================
+生日信
+========================== */
+
+
+.letter{
+
+
+height:100vh;
+
+
+background:
+
+#f5f1e8;
+
+
+color:#171717;
+
+
+display:flex;
+
+
+justify-content:center;
+
+align-items:center;
+
+
+text-align:center;
+
+
+}
+
+
+
+.letter-box{
+
+
+max-width:700px;
+
+
+padding:40px;
+
+
+opacity:0;
+
+
+transform:
+
+translateY(60px);
+
+
+transition:
+
+1.5s ease;
+
+
+}
+
+
+
+.letter.active 
+.letter-box{
+
+
+opacity:1;
+
+
+transform:
+
+translateY(0);
+
+
+}
+
+
+
+.letter h1{
+
+
+font-size:55px;
+
+
+font-weight:300;
+
+
+letter-spacing:8px;
+
+
+margin-bottom:50px;
+
+
+}
+
+
+
+
+.letter p{
+
+
+font-size:20px;
+
+
+line-height:2.4;
+
+
+letter-spacing:3px;
+
+
+}
+
+
+
+
+.letter span{
+
+
+color:#b08a42;
+
+
+font-size:30px;
+
+
+letter-spacing:5px;
+
+
+}
+
+
+
+@media(max-width:700px){
+
+
+.letter h1{
+
+
+font-size:40px;
+
+
+}
+
+
+.letter p{
+
+
+font-size:16px;
+
+
+}
+
+
+
+}
+
+/* ==========================
+   Loading 开场
+========================== */
+
+
+.loader{
+
+
+position:fixed;
+
+
+inset:0;
+
+
+background:#090909;
+
+
+z-index:999;
+
+
+display:flex;
+
+
+flex-direction:column;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+
+transition:
+
+opacity 1.5s ease;
+
+
+}
+
+
+
+.loader-title{
+
+
+font-size:
+
+clamp(40px,8vw,90px);
+
+
+letter-spacing:10px;
+
+
+font-weight:300;
+
+
+}
+
+
+
+.loader-sub{
+
+
+margin-top:35px;
+
+
+font-size:16px;
+
+
+letter-spacing:6px;
+
+
+color:#d6b36a;
+
+
+}
+
+
+
+.loader.hide{
+
+
+opacity:0;
+
+
+pointer-events:none;
+
+
+}
+
+/* ==========================
+   Memories Gallery
+========================== */
+
+
+.gallery-title{
+
+
+height:70vh;
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+align-items:center;
+
+
+text-align:center;
+
+
+background:#090909;
+
+
+}
+
+
+
+.gallery-title h1{
+
+
+font-size:
+
+clamp(40px,7vw,80px);
+
+
+font-weight:300;
+
+
+letter-spacing:12px;
+
+
+}
+
+
+
+.gallery-title p{
+
+
+margin-top:30px;
+
+
+font-size:18px;
+
+
+letter-spacing:5px;
+
+
+color:#d6b36a;
+
+
+}
+
+
+
+
+
+.gallery{
+
+
+width:90%;
+
+
+max-width:1400px;
+
+
+margin:auto;
+
+
+padding:
+
+100px 0;
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(12,1fr);
+
+
+gap:40px;
+
+
+}
+
+
+
+
+.gallery-item{
+
+
+overflow:hidden;
+
+
+height:500px;
+
+
+}
+
+
+
+.gallery-item img{
+
+
+width:100%;
+
+
+height:100%;
+
+
+object-fit:cover;
+
+
+transition:
+
+1s ease;
+
+
+}
+
+
+
+
+
+.gallery-item:hover img{
+
+
+transform:
+
+scale(1.08);
+
+
+}
+
+
+
+
+.gallery-item.big{
+
+
+grid-column:
+
+span 7;
+
+
+height:700px;
+
+
+}
+
+
+
+.gallery-item:not(.big){
+
+
+grid-column:
+
+span 5;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+.gallery{
+
+
+display:block;
+
+
+}
+
+
+
+.gallery-item,
+
+.gallery-item.big{
+
+
+height:400px;
+
+
+margin-bottom:30px;
+
+
+}
+
+
+}
+
+.photo-note{
+
+
+position:absolute;
+
+
+bottom:30px;
+
+
+left:30px;
+
+
+color:white;
+
+
+font-size:18px;
+
+
+letter-spacing:4px;
+
+
+}
+
+.scroll{
+
+
+position:absolute;
+
+
+bottom:40px;
+
+
+left:50%;
+
+
+transform:translateX(-50%);
+
+
+font-size:12px;
+
+
+letter-spacing:5px;
+
+
+opacity:.7;
+
+
+animation:
+
+float 2s infinite;
+
+
+}
+
+
+
+@keyframes float{
+
+
+0%,100%{
+
+transform:
+translate(-50%,0);
+
+}
+
+
+50%{
+
+transform:
+translate(-50%,15px);
+
+}
+
+
+}
