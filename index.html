@@ -1,796 +1,1060 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>李姣 · 生日快乐</title>
+    <style>
+        /* ===== 全局重置 ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<meta charset="UTF-8">
+        body {
+            font-family: '方正姚体', 'PingFang SC', 'Microsoft YaHei', serif;
+            background-color: #0a0a1a;
+            color: #eaeaea;
+            overflow-x: hidden;
+            cursor: default;
+        }
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1.0">
+        html {
+            scroll-behavior: smooth;
+        }
 
-<title>
-August 13th · To Jiao
-</title>
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c8b4e6;
+            border-radius: 10px;
+        }
 
+        /* ===== 渐入动画 ===== */
+        section {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
 
-<link rel="stylesheet" href="style.css">
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.5s; }
+        .delay-3 { animation-delay: 0.8s; }
+        .delay-4 { animation-delay: 1.1s; }
 
+        /* ===== 滚动进度条 ===== */
+        #progressBar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c8b4e6, #f0e6d0, #c8b4e6);
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s;
+            box-shadow: 0 0 20px rgba(200, 180, 230, 0.3);
+        }
+
+        /* ===== 第一屏：英雄区 ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(ellipse at 50% 80%, rgba(20, 40, 80, 0.6), #0a0a1a 80%);
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            max-width: 800px;
+            height: 60%;
+            background: radial-gradient(ellipse, rgba(180, 150, 220, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 渐变色文字 */
+        .gradient-text {
+            background: linear-gradient(135deg, #f0e6d0 0%, #c8b4e6 40%, #f0e6d0 70%, #ffd4a8 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .name-en {
+            font-family: 'Freestyle Script', 'Brush Script MT', cursive;
+            font-size: clamp(3.5rem, 15vw, 8rem);
+            font-weight: normal;
+            letter-spacing: 0.05em;
+            margin-bottom: -0.1em;
+        }
+
+        .name-zh {
+            font-family: '方正姚体', 'STZhongsong', 'Microsoft YaHei', serif;
+            font-size: clamp(2.8rem, 10vw, 5.5rem);
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            margin-right: -0.3em;
+            margin-top: 0.1em;
+        }
+
+        .birthday-badge {
+            margin-top: 2rem;
+            padding: 0.6rem 2.2rem;
+            border: 1px solid rgba(200, 180, 255, 0.25);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(4px);
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            letter-spacing: 0.4em;
+            color: #c8b4e6;
+            display: inline-block;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            animation: floatDown 2s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes floatDown {
+            0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.3; }
+            50% { transform: translateX(-50%) translateY(8px); opacity: 0.8; }
+        }
+
+        /* ===== 通用容器 ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-family: '方正姚体', 'STZhongsong', serif;
+            letter-spacing: 0.15em;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #a09bb0;
+            font-size: 1rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 3rem;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c8b4e6, transparent);
+            margin: 0.8rem auto 2.5rem;
+        }
+
+        /* ===== 照片画廊 ===== */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .photo-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(2px);
+            cursor: pointer;
+        }
+
+        .photo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8);
+            border-color: rgba(200, 180, 255, 0.15);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .photo-card .caption {
+            padding: 16px 20px;
+            font-size: 0.95rem;
+            color: #c8c0d6;
+            text-align: center;
+            letter-spacing: 0.05em;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        /* ===== 🖼️ 灯箱 ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            padding: 40px;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85%;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .lightbox .close-hint {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
+            font-family: 'PingFang SC', sans-serif;
+        }
+
+        /* ===== 祝福区 ===== */
+        .bless-section {
+            background: radial-gradient(ellipse at center, rgba(30, 20, 50, 0.5), transparent);
+            padding: 60px 24px;
+            margin: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(200, 180, 255, 0.06);
+            border-bottom: 1px solid rgba(200, 180, 255, 0.06);
+            position: relative;
+        }
+
+        .bless-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            line-height: 2;
+            color: #ddd6e8;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            letter-spacing: 0.06em;
+            font-weight: 300;
+        }
+
+        .bless-text .highlight {
+            color: #f0e6d0;
+            font-weight: 400;
+        }
+
+        .bless-text .age {
+            display: inline-block;
+            font-family: 'Freestyle Script', cursive;
+            font-size: 2.2rem;
+            color: #c8b4e6;
+            margin: 0 0.1em;
+        }
+
+        /* ===== 🕯️ 蜡烛 ===== */
+        .candle-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .candle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flame {
+            width: 24px;
+            height: 40px;
+            background: radial-gradient(ellipse at 30% 20%, #ffdd66, #ff8800 60%, #cc4400);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 0.4s ease-in-out infinite alternate;
+            box-shadow: 0 0 30px 10px rgba(255, 150, 0, 0.3);
+            margin-bottom: 6px;
+        }
+
+        @keyframes flicker {
+            0% { transform: skewX(-3deg) scaleY(0.95); opacity: 0.9; }
+            100% { transform: skewX(3deg) scaleY(1.05); opacity: 1; }
+        }
+
+        .candle-body {
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(135deg, #f5e6d0, #d4b8a0);
+            border-radius: 4px 4px 10px 10px;
+            box-shadow: inset -4px 0 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .candle-body::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 8px;
+            background: #a08070;
+            border-radius: 50%;
+        }
+
+        .age-number {
+            font-family: 'Freestyle Script', cursive;
+            font-size: 2.8rem;
+            color: #f0e6d0;
+            margin-top: 4px;
+            text-shadow: 0 0 30px rgba(200, 180, 255, 0.15);
+        }
+
+        /* ===== ⏰ 倒计时 ===== */
+        .countdown {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            min-width: 80px;
+        }
+
+        .countdown-item .number {
+            font-family: 'Freestyle Script', cursive;
+            font-size: 2.4rem;
+            color: #f0e6d0;
+            display: block;
+        }
+
+        .countdown-item .label {
+            font-size: 0.7rem;
+            color: #a09bb0;
+            letter-spacing: 0.2em;
+            font-family: 'PingFang SC', sans-serif;
+        }
+
+        /* ===== 🎈 气球 ===== */
+        .balloon-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .balloon {
+            position: absolute;
+            bottom: -120px;
+            font-size: 2.8rem;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+            user-select: none;
+            filter: drop-shadow(0 8px 20px rgba(255, 200, 200, 0.1));
+            transform-origin: center;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateX(0) translateY(0) rotate(0deg) scale(0.8); opacity: 0.3; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% { transform: translateX(var(--drift)) translateY(-110vh) rotate(15deg) scale(1.1); opacity: 0; }
+        }
+
+        /* ===== ⭐ 星星 ===== */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.1; transform: scale(0.8); }
+            100% { opacity: 0.9; transform: scale(1.4); }
+        }
+
+        /* ===== 🌸 花瓣 ===== */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            top: -30px;
+            font-size: 1.4rem;
+            animation: petalFall linear infinite;
+            opacity: 0.5;
+            user-select: none;
+            transform-origin: center;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateX(0) translateY(0) rotate(0deg) scale(0.6);
+                opacity: 0.2;
+            }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.6; }
+            100% {
+                transform: translateX(var(--sway)) translateY(110vh) rotate(720deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        /* ===== 🎆 烟花 Canvas ===== */
+        #fireworksCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        /* ===== 🎵 音乐按钮（旋转图标） ===== */
+        .music-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #c8b4e6;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .music-toggle:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(200, 180, 255, 0.3);
+        }
+
+        .music-toggle.playing {
+            color: #f0e6d0;
+            border-color: rgba(200, 180, 255, 0.3);
+        }
+
+        /* 🎵 旋转音乐符号 */
+        #musicIcon {
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        #musicIcon.playing {
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #musicIcon.paused {
+            animation: none;
+        }
+
+        /* ===== 页脚 ===== */
+        footer {
+            text-align: center;
+            padding: 40px 20px 30px;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            position: relative;
+            z-index: 2;
+        }
+
+        footer span {
+            color: rgba(200, 180, 255, 0.3);
+        }
+
+        /* ===== 响应式 ===== */
+        @media (max-width: 600px) {
+            .container { padding: 40px 16px; }
+            .photo-grid { gap: 16px; }
+            .photo-card img { height: 240px; }
+            .bless-text { padding: 0 10px; }
+            .music-toggle { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.4rem; }
+            #musicIcon { font-size: 1.4rem; }
+            .balloon { font-size: 2rem; }
+            .countdown-item { padding: 8px 16px; min-width: 60px; }
+            .countdown-item .number { font-size: 1.8rem; }
+            .lightbox { padding: 20px; }
+            .lightbox .close-hint { top: 20px; right: 20px; font-size: 0.8rem; }
+        }
+    </style>
 </head>
-
-
 <body>
 
-<!-- 开场加载 -->
-
-<div class="loader">
-
-
-<div class="loader-title">
-
-August 13th
-
-</div>
-
-
-<div class="loader-sub">
-
-Loading memories...
-
-</div>
-
-
-</div>
-
-    <!-- 高级导航 -->
-
-<header class="nav">
-
-
-<div class="logo">
-
-LI JIAO
-
-</div>
-
-
-<div class="nav-right">
-
-August 13th
-
-</div>
-
-
-</header>
-
-<!-- 音乐按钮 -->
-
-<div class="music-btn" onclick="playMusic()">
-
-♪ 
-
-</div>
-
-
-<audio id="bgm"
-loop>
-
-<source src="music/birthday.mp3">
-
-</audio>
-
-
-
-<!-- 开场 -->
-
-
-<section class="hero">
-
-
-<div class="hero-bg"></div>
-
-
-
-<div class="hero-content">
-
-
-<h1>
-
-August 13th · To Jiao
-
-</h1>
-
-
-<p>
-
-A little film about a beautiful soul
-
-</p>
-
-
-<div class="date">
-
-2026.08.13
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-<!-- 正文 -->
-
-<div id="film">
-
-<section class="gallery-title">
-
-
-<div>
-
-<h1>
-Memories Gallery
-</h1>
-
-
-<p>
-Fragments of beautiful moments
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-<section class="page">
-
-<img src="01.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-<h2>
-The Beginning
-</h2>
-
-
-<p>
-
-有些人的出现，
-<br>
-不会改变世界。
-
-<br><br>
-
-却会让某一天，
-开始拥有意义。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section class="page">
-
-<img src="02.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-
-<h2>
-Chapter 01
-</h2>
-
-
-<p>
-
-她喜欢阳光，
-<br>
-喜欢自然，
-<br>
-喜欢生活里那些细小的温柔。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="03.jpg">
-
-
-<div class="caption">
-
-<h2>
-Little Happiness
-</h2>
-
-
-<p>
-
-快乐其实很简单。
-
-<br><br>
-
-一片花海，
-一次旅行，
-一个开心的笑。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section class="page">
-
-<img src="04.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-
-<h2>
-A Moment</h2>
-
-
-<p>
-
-照片留下的，
-不是画面。
-
-<br><br>
-
-而是那一刻真实存在过的心情。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section class="page">
-
-<img src="05.jpg">
-
-
-<div class="caption">
-
-<h2>
-Summer Memory
-</h2>
-
-
-<p>
-
-愿你永远拥有，
-
-发现美好的能力。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-<section class="page">
-
-<img src="06.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-<h2>
-Somewhere</h2>
-
-
-<p>
-
-走过的路，
-<br>
-看过的风景，
-
-<br>
-都会成为未来的光。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-<section class="page">
-
-<img src="07.jpg">
-
-
-<div class="caption">
-
-<h2>
-Growing</h2>
-
-
-<p>
-
-时间教会我们成长，
-
-也教会我们珍惜。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="08.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-<h2>
-The Story</h2>
-
-
-<p>
-
-每一次记录，
-
-都是人生电影里的一个镜头。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="09.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-
-<h2>
-Future</h2>
-
-
-<p>
-
-愿未来的你，
-
-永远靠近喜欢的生活。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="10.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-
-<h2>
-Dream</h2>
-
-
-<p>
-
-愿你眼里有光，
-
-心里有方向。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="11.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-<h2>
-Forever Young</h2>
-
-
-<p>
-
-愿青春永远温柔，
-
-岁月永远善待你。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="12.jpg">
-
-
-<div class="caption">
-
-
-<h2>
-August</h2>
-
-
-<p>
-
-八月十三日，
-
-一个值得被记住的日子。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-<section class="page">
-
-<img src="13.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-
-<div class="caption">
-
-<h2>
-Happy Birthday</h2>
-
-
-<p>
-
-愿所有美好，
-
-都如期而至。
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-<section class="page final">
-
-<section class="letter">
-
-
-<div class="letter-box">
-
-
-<h1>
-Dear Jiao,
-</h1>
-
-
-
-<p>
-
-如果人生是一场漫长的电影，
-
-<br><br>
-
-
-希望你的每一个章节，
-
-<br>
-
-都有温柔的光。
-
-<br><br>
-
-
-愿你永远拥有，
-
-奔赴热爱的勇气。
-
-<br>
-
-也拥有被世界温柔拥抱的幸运。
-
-<br><br>
-
-
-八月十三日，
-
-<br>
-
-愿所有美好，
-
-都如期而至。
-
-<br><br>
-
-
-<span>
-
-Happy Birthday
-
-</span>
-
-
-</p>
-
-
-</div>
-
-
-</section>
-
-<section class="gallery">
-
-
-<div class="gallery-item big">
-
-<img src="photos/03.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-</div>
-
-
-
-<div class="gallery-item">
-
-<img src="photos/05.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-</div>
-
-
-
-<div class="gallery-item">
-
-<img src="photos/07.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-</div>
-
-
-
-<div class="gallery-item big">
-
-<img src="photos/10.jpg">
-
-</div>
-
-
-
-<div class="gallery-item">
-
-<img src="photos/12.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-</div>
-
-
-
-</section>
-
-
-<img src="14.jpg">
-
-<div class="photo-note">
-
-Summer Memory
-
-</div>
-
-<div class="caption">
-
-
-<h2>
-To Jiao
-</h2>
-
-
-<p>
-
-愿你一生自由，
-
-一生明亮。
-
-<br><br>
-
-Happy Birthday.
-
-<br>
-
-2026.08.13
-
-</p>
-
-
-</div>
-
-
-</section>
-
-
-
-
-</div>
-
-
-
-
-<script src="script.js"></script>
-
+    <!-- ===== 滚动进度条 ===== -->
+    <div id="progressBar"></div>
+
+    <!-- ===== ⭐ 星星背景 ===== -->
+    <div class="stars" id="stars"></div>
+
+    <!-- ===== 🌸 花瓣 ===== -->
+    <div class="petal-container" id="petalContainer"></div>
+
+    <!-- ===== 🎈 气球 ===== -->
+    <div class="balloon-container" id="balloonContainer"></div>
+
+    <!-- ===== 🎆 烟花 Canvas ===== -->
+    <canvas id="fireworksCanvas"></canvas>
+
+    <!-- ===== 🖼️ 灯箱 ===== -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-hint">✕ 点击关闭</span>
+        <img id="lightboxImg" src="" alt="放大查看" />
+    </div>
+
+    <!-- ===== 🎵 音乐按钮（旋转） ===== -->
+    <button class="music-toggle" id="musicBtn" title="点击播放/暂停音乐">
+        <span id="musicIcon">♪</span>
+    </button>
+
+    <!-- ==================== 第一屏 ==================== -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="name-en gradient-text delay-1">Li Jiao</div>
+            <div class="name-zh gradient-text delay-2">李 姣</div>
+            <div class="birthday-badge delay-3">✦ 二〇二六 · 廿六芳华 ✦</div>
+        </div>
+        <div class="scroll-hint">— 向下 · 探寻美好 —</div>
+    </section>
+
+    <!-- ==================== 第二屏：照片 ==================== -->
+    <section class="container delay-4">
+        <h2 class="section-title gradient-text">· 光影 ·</h2>
+        <div class="divider"></div>
+        <p class="section-sub">每一帧都是你独特的模样</p>
+
+        <div class="photo-grid" id="photoGrid">
+            <!-- ★★★ 替换为你的图片文件名 ★★★ -->
+            <div class="photo-card" data-src="01.jpg">
+                <img src="01.jpg" alt="李姣的生活照" loading="lazy">
+                <div class="caption">✨ 自在如风</div>
+            </div>
+            <div class="photo-card" data-src="02.jpg">
+                <img src="02.jpg" alt="李姣的生活照" loading="lazy">
+                <div class="caption">🌸 温暖明媚</div>
+            </div>
+            <div class="photo-card" data-src="03.jpg">
+                <img src="03.jpg" alt="李姣的生活照" loading="lazy">
+                <div class="caption">🌿 沉静有力</div>
+            </div>
+            <div class="photo-card" data-src="04.jpg">
+                <img src="04.jpg" alt="李姣的生活照" loading="lazy">
+                <div class="caption">✨ 疏朗开阔</div>
+            </div>
+            <div class="photo-card" data-src="05.jpg">
+                <img src="05.jpg" alt="李姣的生活照" loading="lazy">
+                <div class="caption">🌸 和光同尘</div>
+            </div>
+            <div class="photo-card" data-src="06.jpg">
+                <img src="06.jpg" alt="李姣的生活照" loading="lazy">
+                <div class="caption">🌿 霁月清风</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 第三屏：祝福 + 蜡烛 + 倒计时 ==================== -->
+    <section class="bless-section">
+        <div class="container" style="padding: 0;">
+            <h2 class="section-title gradient-text" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">· 爱的祝福 ·</h2>
+            <div class="divider"></div>
+
+            <!-- 🕯️ 蜡烛 -->
+            <div class="candle-wrapper">
+                <div class="candle">
+                    <div class="flame"></div>
+                    <div class="candle-body"></div>
+                    <div class="age-number">26</div>
+                </div>
+            </div>
+
+            <div class="bless-text">
+                <p>
+                    亲爱的 <span class="highlight">李姣</span>，<br>
+                    今天，世界为你点亮了第 <span class="age">26</span> 根蜡烛。<br>
+                    愿你继续在自己的时区里，从容、舒展、光芒万丈。<br>
+                    前路风新日暖，万物皆可期待。
+                </p>
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: #a09bb0;">
+                    —— 永远为你骄傲的朋友
+                </p>
+            </div>
+
+            <!-- ⏰ 倒计时 -->
+            <div class="countdown" id="countdown">
+                <div class="countdown-item">
+                    <span class="number" id="cdDays">--</span>
+                    <span class="label">天</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="cdHours">--</span>
+                    <span class="label">小时</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="cdMinutes">--</span>
+                    <span class="label">分钟</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="number" id="cdSeconds">--</span>
+                    <span class="label">秒</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 页脚 ==================== -->
+    <footer>
+        <p>✦ 献给独一无二的李姣 ✦</p>
+        <p style="margin-top: 8px; opacity: 0.5;">&copy; 2026 · 以爱之名</p>
+    </footer>
+
+    <!-- ========================================================== -->
+    <!-- ===== JavaScript：全部功能 ===== -->
+    <!-- ========================================================== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // =========================================================
+            // 1. 滚动进度条
+            // =========================================================
+            const progressBar = document.getElementById('progressBar');
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+                progressBar.style.width = progress + '%';
+            });
+
+            // =========================================================
+            // 2. 星星
+            // =========================================================
+            function createStars() {
+                const container = document.getElementById('stars');
+                const count = 120;
+                for (let i = 0; i < count; i++) {
+                    const star = document.createElement('div');
+                    star.className = 'star';
+                    const size = Math.random() * 3 + 1;
+                    star.style.width = size + 'px';
+                    star.style.height = size + 'px';
+                    star.style.left = Math.random() * 100 + '%';
+                    star.style.top = Math.random() * 100 + '%';
+                    star.style.setProperty('--duration', (Math.random() * 4 + 2) + 's');
+                    star.style.animationDelay = (Math.random() * 6) + 's';
+                    container.appendChild(star);
+                }
+            }
+            createStars();
+
+            // =========================================================
+            // 3. 花瓣
+            // =========================================================
+            function createPetals() {
+                const container = document.getElementById('petalContainer');
+                const petalEmojis = ['🌸', '🌸', '🌸', '🌸', '🌸', '🌺', '🌷', '🪷'];
+                const count = 20;
+                for (let i = 0; i < count; i++) {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal';
+                    petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+                    petal.style.left = Math.random() * 100 + '%';
+                    petal.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+                    petal.style.setProperty('--sway', (Math.random() * 200 - 100) + 'px');
+                    petal.style.animationDuration = (Math.random() * 12 + 15) + 's';
+                    petal.style.animationDelay = (Math.random() * 25) + 's';
+                    container.appendChild(petal);
+                }
+            }
+            createPetals();
+
+            // =========================================================
+            // 4. 气球
+            // =========================================================
+            function createBalloons() {
+                const container = document.getElementById('balloonContainer');
+                const emojis = ['🎈', '🎈', '🎈', '🎈', '🎈', '🎈'];
+                const count = 18;
+                for (let i = 0; i < count; i++) {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon';
+                    balloon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    balloon.style.left = (Math.random() * 90 + 5) + '%';
+                    balloon.style.fontSize = (Math.random() * 1.8 + 2.2) + 'rem';
+                    balloon.style.setProperty('--drift', (Math.random() * 180 - 90) + 'px');
+                    balloon.style.animationDuration = (Math.random() * 16 + 20) + 's';
+                    balloon.style.animationDelay = (Math.random() * 35) + 's';
+                    const hue = Math.floor(Math.random() * 360);
+                    balloon.style.filter = `drop-shadow(0 8px 30px hsla(${hue}, 80%, 60%, 0.15))`;
+                    container.appendChild(balloon);
+                }
+            }
+            createBalloons();
+
+            // =========================================================
+            // 5. 灯箱
+            // =========================================================
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const photoCards = document.querySelectorAll('.photo-card');
+
+            photoCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const imgSrc = this.dataset.src || this.querySelector('img').src;
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            lightbox.addEventListener('click', function() {
+                this.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // =========================================================
+            // 6. 🎆 烟花（点击页面绽放）
+            // =========================================================
+            const canvas = document.getElementById('fireworksCanvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animating = false; // ← 修复：定义 animating 变量
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor(x, y, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.color = color;
+                    const angle = Math.random() * 2 * Math.PI;
+                    const speed = Math.random() * 6 + 3;
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+                    this.life = 1;
+                    this.decay = Math.random() * 0.015 + 0.008;
+                    this.size = Math.random() * 5 + 2;
+                    this.gravity = 0.05;
+                    this.trail = [];
+                }
+
+                update() {
+                    this.trail.push({ x: this.x, y: this.y });
+                    if (this.trail.length > 6) this.trail.shift();
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += this.gravity;
+                    this.vx *= 0.99;
+                    this.vy *= 0.99;
+                    this.life -= this.decay;
+                    this.size *= 0.995;
+                }
+
+                draw(ctx) {
+                    this.trail.forEach((p, i) => {
+                        const alpha = (i / this.trail.length) * this.life * 0.3;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, this.size * 0.3 * (i / this.trail.length), 0, Math.PI * 2);
+                        ctx.fillStyle = this.color.replace('1)', alpha + ')');
+                        ctx.fill();
+                    });
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, Math.max(this.size, 0.5), 0, Math.PI * 2);
+                    ctx.fillStyle = this.color.replace('1)', this.life + ')');
+                    ctx.fill();
+                    const glow = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 4);
+                    glow.addColorStop(0, this.color.replace('1)', (this.life * 0.3) + ')'));
+                    glow.addColorStop(1, 'rgba(0,0,0,0)');
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 4, 0, Math.PI * 2);
+                    ctx.fillStyle = glow;
+                    ctx.fill();
+                }
+            }
+
+            function createFirework(x, y) {
+                const colors = [
+                    'rgba(255, 100, 150, 1)',
+                    'rgba(255, 200, 50, 1)',
+                    'rgba(100, 200, 255, 1)',
+                    'rgba(255, 150, 200, 1)',
+                    'rgba(150, 255, 200, 1)',
+                    'rgba(255, 100, 100, 1)',
+                    'rgba(200, 150, 255, 1)',
+                    'rgba(255, 215, 0, 1)',
+                ];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const count = Math.floor(Math.random() * 40) + 30;
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle(x, y, color));
+                }
+            }
+
+            function animateFireworks() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    const p = particles[i];
+                    p.update();
+                    p.draw(ctx);
+                    if (p.life <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+                if (particles.length > 0) {
+                    requestAnimationFrame(animateFireworks);
+                } else {
+                    animating = false;
+                }
+            }
+
+            // 点击页面触发烟花
+            document.addEventListener('click', function(e) {
+                const x = e.clientX;
+                const y = e.clientY;
+                createFirework(x, y);
+                if (particles.length > 0 && !animating) {
+                    animating = true;
+                    animateFireworks();
+                }
+            });
+
+            // =========================================================
+            // 7. 🎵 MP3 音乐（自动播放 + 旋转图标）
+            // =========================================================
+            const musicBtn = document.getElementById('musicBtn');
+            const musicIcon = document.getElementById('musicIcon');
+            const audio = new Audio('song.mp3');
+            audio.loop = true;
+            audio.volume = 0.6;
+
+            let isPlaying = false;
+            let autoPlayAttempted = false;
+
+            function tryAutoPlay() {
+                if (autoPlayAttempted) return;
+                autoPlayAttempted = true;
+
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicIcon.textContent = '♪';
+                    musicIcon.className = 'playing';
+                    musicBtn.classList.add('playing');
+                    musicBtn.title = '点击暂停音乐';
+                    console.log('🎵 音乐自动播放成功');
+                }).catch(err => {
+                    console.log('自动播放被阻止，等待用户点击:', err);
+                    musicIcon.textContent = '♪';
+                    musicIcon.className = 'paused';
+                    musicBtn.title = '点击播放音乐';
+                });
+            }
+
+            musicBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+
+                if (isPlaying) {
+                    audio.pause();
+                    isPlaying = false;
+                    musicIcon.className = 'paused';
+                    musicBtn.classList.remove('playing');
+                    musicBtn.title = '点击播放音乐';
+                } else {
+                    audio.play().then(() => {
+                        isPlaying = true;
+                        musicIcon.className = 'playing';
+                        musicBtn.classList.add('playing');
+                        musicBtn.title = '点击暂停音乐';
+                    }).catch(err => {
+                        console.log('播放失败:', err);
+                    });
+                }
+            });
+
+            // 页面加载后尝试自动播放
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(tryAutoPlay, 500);
+            });
+
+            // 用户点击页面任何位置时尝试播放
+            document.addEventListener('click', function() {
+                if (!isPlaying && !autoPlayAttempted) {
+                    tryAutoPlay();
+                }
+            }, { once: false });
+
+            audio.addEventListener('ended', function() {
+                if (isPlaying) {
+                    audio.play().catch(() => {});
+                }
+            });
+
+            console.log('🎵 音乐已加载: song.mp3');
+
+            // =========================================================
+            // 8. ⏰ 倒计时
+            // =========================================================
+            function updateCountdown() {
+                const birthday = new Date(2026, 7, 13, 20, 0, 0);
+                const now = new Date();
+                if (now > birthday) {
+                    birthday.setFullYear(birthday.getFullYear() + 1);
+                }
+                const diff = birthday - now;
+                if (diff <= 0) {
+                    document.getElementById('cdDays').textContent = '🎉';
+                    document.getElementById('cdHours').textContent = '🎉';
+                    document.getElementById('cdMinutes').textContent = '🎉';
+                    document.getElementById('cdSeconds').textContent = '🎉';
+                    return;
+                }
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                document.getElementById('cdDays').textContent = String(days).padStart(2, '0');
+                document.getElementById('cdHours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cdMinutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('cdSeconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+        })();
+    </script>
 
 </body>
-
 </html>
-
-<div class="scroll">
-
-
-SCROLL
-
-
-</div>
