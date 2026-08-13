@@ -755,6 +755,540 @@
         </div>
     </section>
 
+
+        <!-- ==================== 第四屏：时光胶囊 ==================== -->
+    <section class="container" style="padding: 40px 24px;">
+        <h2 class="section-title gradient-text">· 时光胶囊 ·</h2>
+        <div class="divider"></div>
+        <p class="section-sub">致一年后的自己</p>
+
+        <div style="
+            max-width: 700px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 40px 36px;
+            border: 1px solid rgba(200, 180, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        ">
+            <!-- 装饰光效 -->
+            <div style="
+                position: absolute;
+                top: -50%;
+                right: -30%;
+                width: 300px;
+                height: 300px;
+                background: radial-gradient(circle, rgba(200, 180, 255, 0.05), transparent 70%);
+                pointer-events: none;
+            "></div>
+            
+            <div style="position: relative; z-index: 2;">
+                <p style="
+                    font-size: clamp(1rem, 2vw, 1.2rem);
+                    line-height: 2.2;
+                    color: #c8c0d6;
+                    font-family: 'PingFang SC', sans-serif;
+                    letter-spacing: 0.06em;
+                    font-weight: 300;
+                    text-align: left;
+                ">
+                    🌟 亲爱的李姣：<br><br>
+                    当你再次打开这封信时，已是又一年的花开。<br>
+                    愿这一年里，你依然保持着此刻的从容与笃定。<br>
+                    所有的努力都结出果实，所有的期待都如期而至。<br>
+                    无论走到哪里，记得：<br>
+                    <span style="color: #f0e6d0; font-weight: 400;">你值得世间一切美好。</span>
+                </p>
+                <p style="
+                    margin-top: 24px;
+                    text-align: right;
+                    color: #a09bb0;
+                    font-size: 0.9rem;
+                    font-family: 'Freestyle Script', cursive;
+                ">
+                    —— 2026 · 夏
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 第五屏：愿望墙 ==================== -->
+    <section class="bless-section" style="margin: 0; padding: 60px 24px;">
+        <div class="container" style="padding: 0;">
+            <h2 class="section-title gradient-text" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">· 愿望墙 ·</h2>
+            <div class="divider"></div>
+            <p class="section-sub">点击星星，许下心愿 ✨</p>
+
+            <div style="
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                flex-wrap: wrap;
+                margin-top: 20px;
+            ">
+                <!-- 6颗愿望星星 -->
+                <div class="wish-star" data-wish="愿你永远被爱包围" style="
+                    font-size: 3rem;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                    user-select: none;
+                    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1));
+                ">⭐</div>
+                <div class="wish-star" data-wish="愿你前程繁花似锦" style="
+                    font-size: 3rem;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                    user-select: none;
+                    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1));
+                ">⭐</div>
+                <div class="wish-star" data-wish="愿你永远保持热爱" style="
+                    font-size: 3rem;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                    user-select: none;
+                    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1));
+                ">⭐</div>
+                <div class="wish-star" data-wish="愿你每一天都闪闪发光" style="
+                    font-size: 3rem;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                    user-select: none;
+                    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1));
+                ">⭐</div>
+                <div class="wish-star" data-wish="愿你健康平安喜乐" style="
+                    font-size: 3rem;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                    user-select: none;
+                    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1));
+                ">⭐</div>
+                <div class="wish-star" data-wish="愿你永远做自己" style="
+                    font-size: 3rem;
+                    cursor: pointer;
+                    transition: transform 0.3s ease, filter 0.3s ease;
+                    user-select: none;
+                    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.1));
+                ">⭐</div>
+            </div>
+
+            <!-- 愿望显示区 -->
+            <div id="wishDisplay" style="
+                margin-top: 30px;
+                padding: 20px 30px;
+                min-height: 60px;
+                color: #f0e6d0;
+                font-size: 1.2rem;
+                font-family: 'PingFang SC', sans-serif;
+                letter-spacing: 0.06em;
+                background: rgba(255, 255, 255, 0.02);
+                border-radius: 16px;
+                border: 1px solid rgba(200, 180, 255, 0.05);
+                transition: all 0.5s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            ">
+                <span style="color: #a09bb0; font-size: 0.9rem;">💫 点击星星，许下你的愿望</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 第六屏：感谢致辞 ==================== -->
+    <section class="container" style="padding: 60px 24px 40px;">
+        <div style="
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        ">
+            <h2 class="section-title gradient-text" style="font-size: clamp(1.8rem, 4vw, 2.4rem);">· 感谢 ·</h2>
+            <div class="divider"></div>
+            
+            <div style="
+                font-size: clamp(1rem, 2vw, 1.3rem);
+                line-height: 2.4;
+                color: #c8c0d6;
+                font-family: 'PingFang SC', sans-serif;
+                letter-spacing: 0.08em;
+                font-weight: 300;
+            ">
+                <p>
+                    感谢你出现在这个世界，<br>
+                    像一束光，照亮了身边的一切。
+                </p>
+                <p style="margin-top: 20px; color: #a09bb0; font-size: 0.95rem;">
+                    愿你被这个世界温柔以待，<br>
+                    也愿你永远温柔待人。
+                </p>
+                <p style="margin-top: 30px; font-family: 'Freestyle Script', cursive; font-size: 2rem; color: #f0e6d0;">
+                    Happy Birthday, Li Jiao.
+                </p>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: #666; letter-spacing: 0.3em;">
+                    ——— 永远为你祝福 ———
+                </p>
+            </div>
+
+            <!-- 回到顶部按钮 -->
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="
+                margin-top: 40px;
+                padding: 12px 36px;
+                background: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(200, 180, 255, 0.15);
+                border-radius: 50px;
+                color: #c8b4e6;
+                font-size: 0.9rem;
+                font-family: 'PingFang SC', sans-serif;
+                letter-spacing: 0.2em;
+                cursor: pointer;
+                transition: 0.3s ease;
+            "
+            onmouseover="this.style.background='rgba(200,180,255,0.08)'"
+            onmouseout="this.style.background='rgba(255,255,255,0.03)'"
+            >
+                ↑ 回到开始
+            </button>
+        </div>
+    </section>
+
+
+        <!-- ==================== 第七屏：生日歌谱 ==================== -->
+    <section class="bless-section" style="margin: 0; padding: 60px 24px; border-top: none;">
+        <div class="container" style="padding: 0;">
+            <h2 class="section-title gradient-text" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">· 生日之歌 ·</h2>
+            <div class="divider"></div>
+            <p class="section-sub">🎶 旋律响起，祝福送到</p>
+
+            <div style="
+                max-width: 600px;
+                margin: 0 auto;
+                background: rgba(255, 255, 255, 0.02);
+                border-radius: 20px;
+                padding: 30px 24px;
+                border: 1px solid rgba(200, 180, 255, 0.06);
+                font-family: 'PingFang SC', sans-serif;
+                line-height: 2.2;
+                color: #c8c0d6;
+                letter-spacing: 0.06em;
+            ">
+                <div style="text-align: center; font-size: 1.1rem; font-weight: 300;">
+                    <p>🎵 祝你生日快乐 ~</p>
+                    <p>🎵 祝你生日快乐 ~</p>
+                    <p>🎵 祝<span style="color: #f0e6d0;">李姣</span>生日快乐 ~</p>
+                    <p>🎵 祝你永远快乐 ~</p>
+                </div>
+                <div style="
+                    margin-top: 16px;
+                    padding-top: 16px;
+                    border-top: 1px solid rgba(200, 180, 255, 0.06);
+                    font-size: 0.8rem;
+                    color: #666;
+                    text-align: center;
+                    letter-spacing: 0.3em;
+                ">
+                    ♪ 愿这首歌，陪你岁岁年年 ♪
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 第八屏：成长时间轴 ==================== -->
+    <section class="container" style="padding: 40px 24px;">
+        <h2 class="section-title gradient-text">· 时光印记 ·</h2>
+        <div class="divider"></div>
+        <p class="section-sub">从0到26，每一岁都是礼物</p>
+
+        <div style="
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 40px;
+        ">
+            <!-- 时间轴竖线 -->
+            <div style="
+                position: absolute;
+                left: 12px;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: linear-gradient(to bottom, rgba(200, 180, 255, 0.1), rgba(200, 180, 255, 0.3), rgba(200, 180, 255, 0.1));
+            "></div>
+
+            <!-- 年份节点 -->
+            <div class="timeline-item" style="position: relative; margin-bottom: 30px; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards;">
+                <div style="
+                    position: absolute;
+                    left: -32px;
+                    top: 4px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #c8b4e6;
+                    box-shadow: 0 0 20px rgba(200, 180, 230, 0.3);
+                "></div>
+                <div style="
+                    background: rgba(255, 255, 255, 0.02);
+                    border-radius: 12px;
+                    padding: 16px 20px;
+                    border: 1px solid rgba(200, 180, 255, 0.05);
+                    transition: 0.3s ease;
+                "
+                onmouseover="this.style.background='rgba(200,180,255,0.05)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.02)'"
+                >
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <span style="color: #f0e6d0; font-size: 1.2rem; font-weight: 600;">🎂 0岁</span>
+                        <span style="color: #666; font-size: 0.75rem; letter-spacing: 0.2em;">2000</span>
+                    </div>
+                    <p style="color: #a09bb0; font-size: 0.9rem; margin-top: 4px; font-family: 'PingFang SC', sans-serif; letter-spacing: 0.05em;">🌟 你来到了这个世界，一切美好从此开始</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="position: relative; margin-bottom: 30px; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards; animation-delay: 0.2s;">
+                <div style="
+                    position: absolute;
+                    left: -32px;
+                    top: 4px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #a09bb0;
+                    box-shadow: 0 0 20px rgba(160, 155, 176, 0.2);
+                "></div>
+                <div style="
+                    background: rgba(255, 255, 255, 0.02);
+                    border-radius: 12px;
+                    padding: 16px 20px;
+                    border: 1px solid rgba(200, 180, 255, 0.05);
+                    transition: 0.3s ease;
+                "
+                onmouseover="this.style.background='rgba(200,180,255,0.05)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.02)'"
+                >
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <span style="color: #f0e6d0; font-size: 1.2rem; font-weight: 600;">🎈 6岁</span>
+                        <span style="color: #666; font-size: 0.75rem; letter-spacing: 0.2em;">2006</span>
+                    </div>
+                    <p style="color: #a09bb0; font-size: 0.9rem; margin-top: 4px; font-family: 'PingFang SC', sans-serif; letter-spacing: 0.05em;">📚 背上小书包，开启了认识世界的第一页</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="position: relative; margin-bottom: 30px; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards; animation-delay: 0.4s;">
+                <div style="
+                    position: absolute;
+                    left: -32px;
+                    top: 4px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #a09bb0;
+                    box-shadow: 0 0 20px rgba(160, 155, 176, 0.2);
+                "></div>
+                <div style="
+                    background: rgba(255, 255, 255, 0.02);
+                    border-radius: 12px;
+                    padding: 16px 20px;
+                    border: 1px solid rgba(200, 180, 255, 0.05);
+                    transition: 0.3s ease;
+                "
+                onmouseover="this.style.background='rgba(200,180,255,0.05)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.02)'"
+                >
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <span style="color: #f0e6d0; font-size: 1.2rem; font-weight: 600;">🌸 12岁</span>
+                        <span style="color: #666; font-size: 0.75rem; letter-spacing: 0.2em;">2012</span>
+                    </div>
+                    <p style="color: #a09bb0; font-size: 0.9rem; margin-top: 4px; font-family: 'PingFang SC', sans-serif; letter-spacing: 0.05em;">🌱 少女初长成，眼里有光，心中有梦</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="position: relative; margin-bottom: 30px; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards; animation-delay: 0.6s;">
+                <div style="
+                    position: absolute;
+                    left: -32px;
+                    top: 4px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #a09bb0;
+                    box-shadow: 0 0 20px rgba(160, 155, 176, 0.2);
+                "></div>
+                <div style="
+                    background: rgba(255, 255, 255, 0.02);
+                    border-radius: 12px;
+                    padding: 16px 20px;
+                    border: 1px solid rgba(200, 180, 255, 0.05);
+                    transition: 0.3s ease;
+                "
+                onmouseover="this.style.background='rgba(200,180,255,0.05)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.02)'"
+                >
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <span style="color: #f0e6d0; font-size: 1.2rem; font-weight: 600;">🌿 18岁</span>
+                        <span style="color: #666; font-size: 0.75rem; letter-spacing: 0.2em;">2018</span>
+                    </div>
+                    <p style="color: #a09bb0; font-size: 0.9rem; margin-top: 4px; font-family: 'PingFang SC', sans-serif; letter-spacing: 0.05em;">🎓 成年礼，世界在你面前展开无限的画卷</p>
+                </div>
+            </div>
+
+            <div class="timeline-item" style="position: relative; margin-bottom: 30px; opacity: 0; transform: translateX(-20px); animation: fadeInLeft 0.8s ease forwards; animation-delay: 0.8s;">
+                <div style="
+                    position: absolute;
+                    left: -32px;
+                    top: 4px;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    background: #c8b4e6;
+                    box-shadow: 0 0 30px rgba(200, 180, 230, 0.5);
+                "></div>
+                <div style="
+                    background: rgba(255, 255, 255, 0.02);
+                    border-radius: 12px;
+                    padding: 16px 20px;
+                    border: 1px solid rgba(200, 180, 255, 0.1);
+                    transition: 0.3s ease;
+                "
+                onmouseover="this.style.background='rgba(200,180,255,0.05)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.02)'"
+                >
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <span style="color: #f0e6d0; font-size: 1.3rem; font-weight: 600;">🌟 26岁</span>
+                        <span style="color: #c8b4e6; font-size: 0.75rem; letter-spacing: 0.2em;">2026</span>
+                    </div>
+                    <p style="color: #c8c0d6; font-size: 0.95rem; margin-top: 4px; font-family: 'PingFang SC', sans-serif; letter-spacing: 0.05em;">✨ 最好的年纪，最美的你，未来可期</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 左滑动画的 keyframes -->
+        <style>
+            @keyframes fadeInLeft {
+                to { opacity: 1; transform: translateX(0); }
+            }
+            .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+            .timeline-item:nth-child(2) { animation-delay: 0.3s; }
+            .timeline-item:nth-child(3) { animation-delay: 0.5s; }
+            .timeline-item:nth-child(4) { animation-delay: 0.7s; }
+            .timeline-item:nth-child(5) { animation-delay: 0.9s; }
+        </style>
+    </section>
+
+    <!-- ==================== 第九屏：秘密信封 ==================== -->
+    <section class="bless-section" style="margin: 0; padding: 60px 24px; border-top: none;">
+        <div class="container" style="padding: 0;">
+            <h2 class="section-title gradient-text" style="font-size: clamp(1.8rem, 4vw, 2.6rem);">· 秘密信封 ·</h2>
+            <div class="divider"></div>
+            <p class="section-sub">💌 有一封信，想悄悄给你</p>
+
+            <div style="
+                max-width: 500px;
+                margin: 0 auto;
+                cursor: pointer;
+                position: relative;
+            ">
+                <!-- 信封 -->
+                <div id="envelope" style="
+                    position: relative;
+                    background: rgba(255, 255, 255, 0.03);
+                    border-radius: 16px;
+                    padding: 40px 30px;
+                    border: 1px solid rgba(200, 180, 255, 0.08);
+                    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+                    min-height: 140px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    gap: 12px;
+                ">
+                    <!-- 信封装饰 -->
+                    <div style="
+                        position: absolute;
+                        top: 16px;
+                        right: 20px;
+                        font-size: 2rem;
+                        opacity: 0.15;
+                    ">✉️</div>
+                    
+                    <!-- 信封内容 -->
+                    <div id="envelopeContent" style="
+                        text-align: center;
+                        transition: all 0.6s ease;
+                        position: relative;
+                        z-index: 2;
+                    ">
+                        <span style="
+                            font-size: 3rem;
+                            display: block;
+                            margin-bottom: 8px;
+                        ">💌</span>
+                        <span style="
+                            color: #a09bb0;
+                            font-size: 1rem;
+                            font-family: 'PingFang SC', sans-serif;
+                            letter-spacing: 0.1em;
+                        ">点击打开信封</span>
+                    </div>
+
+                    <!-- 隐藏的信纸内容 -->
+                    <div id="letterContent" style="
+                        display: none;
+                        text-align: center;
+                        position: relative;
+                        z-index: 2;
+                    ">
+                        <p style="
+                            font-size: clamp(0.95rem, 2vw, 1.15rem);
+                            line-height: 2.2;
+                            color: #f0e6d0;
+                            font-family: 'PingFang SC', sans-serif;
+                            letter-spacing: 0.06em;
+                            font-weight: 300;
+                        ">
+                            亲爱的李姣，<br><br>
+                            认识你是一件很幸运的事。<br>
+                            你的笑容，像是这个世界上最温暖的阳光。<br>
+                            今天是你的生日，我想对你说：<br>
+                            <span style="color: #c8b4e6; font-weight: 400; font-size: 1.1em;">
+                                “你值得这世间所有的美好。”
+                            </span>
+                            <br><br>
+                            愿你永远做自己，永远闪闪发光。
+                        </p>
+                        <p style="
+                            margin-top: 16px;
+                            color: #666;
+                            font-size: 0.8rem;
+                            letter-spacing: 0.2em;
+                        ">
+                            —— 永远站在你这边的人
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 关闭按钮（信封打开后显示） -->
+                <div id="envelopeClose" style="
+                    display: none;
+                    text-align: center;
+                    margin-top: 16px;
+                    color: #666;
+                    font-size: 0.8rem;
+                    font-family: 'PingFang SC', sans-serif;
+                    letter-spacing: 0.1em;
+                    cursor: pointer;
+                    transition: 0.3s ease;
+                "
+                onmouseover="this.style.color='#a09bb0'"
+                onmouseout="this.style.color='#666'"
+                >
+                    ✕ 收起信件
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- ==================== 页脚 ==================== -->
     <footer>
         <p>✦ 献给独一无二的李姣 ✦</p>
@@ -1086,6 +1620,91 @@
             setInterval(updateCountdown, 1000);
 
         })();
+
+                    // =========================================================
+            // 9. 🌟 愿望墙（点击星星显示愿望）
+            // =========================================================
+            const wishStars = document.querySelectorAll('.wish-star');
+            const wishDisplay = document.getElementById('wishDisplay');
+            let activatedStars = new Set();
+
+            wishStars.forEach((star, index) => {
+                star.addEventListener('click', function() {
+                    const wish = this.dataset.wish;
+                    
+                    // 如果已经点亮，不再重复
+                    if (activatedStars.has(index)) {
+                        wishDisplay.innerHTML = `
+                            <span style="color: #f0e6d0;">🌟 这个愿望已经许过啦！</span>
+                            <span style="color: #a09bb0; font-size: 0.8rem;">再选一颗吧</span>
+                        `;
+                        return;
+                    }
+                    
+                    // 标记为已点亮
+                    activatedStars.add(index);
+                    
+                    // 星星发光特效
+                    this.style.filter = 'drop-shadow(0 0 40px rgba(255, 215, 0, 0.6))';
+                    this.style.transform = 'scale(1.2) rotate(10deg)';
+                    
+                    // 显示愿望
+                    wishDisplay.innerHTML = `
+                        <span style="font-size: 1.5rem;">✨</span>
+                        <span style="color: #f0e6d0;">「${wish}」</span>
+                        <span style="font-size: 1.5rem;">✨</span>
+                    `;
+                    wishDisplay.style.borderColor = 'rgba(255, 215, 0, 0.2)';
+                    
+                    // 如果所有星星都被点亮
+                    if (activatedStars.size === wishStars.length) {
+                        setTimeout(() => {
+                            wishDisplay.innerHTML = `
+                                <span style="font-size: 2rem;">🎉</span>
+                                <span style="color: #f0e6d0; font-weight: 400;">所有愿望都已许下，愿它们全部成真！</span>
+                                <span style="font-size: 2rem;">🎉</span>
+                            `;
+                        }, 500);
+                    }
+                });
+            });
+
+
+                        // =========================================================
+            // 10. 💌 秘密信封（点击展开）
+            // =========================================================
+            const envelope = document.getElementById('envelope');
+            const envelopeContent = document.getElementById('envelopeContent');
+            const letterContent = document.getElementById('letterContent');
+            const envelopeClose = document.getElementById('envelopeClose');
+            let envelopeOpen = false;
+
+            // 点击信封打开
+            envelope.addEventListener('click', function() {
+                if (!envelopeOpen) {
+                    envelopeOpen = true;
+                    envelopeContent.style.display = 'none';
+                    letterContent.style.display = 'block';
+                    envelope.style.background = 'rgba(255, 255, 255, 0.05)';
+                    envelope.style.borderColor = 'rgba(200, 180, 255, 0.15)';
+                    envelope.style.padding = '40px 30px';
+                    envelopeClose.style.display = 'block';
+                }
+            });
+
+            // 点击关闭
+            envelopeClose.addEventListener('click', function(e) {
+                e.stopPropagation();
+                envelopeOpen = false;
+                envelopeContent.style.display = 'block';
+                letterContent.style.display = 'none';
+                envelope.style.background = 'rgba(255, 255, 255, 0.03)';
+                envelope.style.borderColor = 'rgba(200, 180, 255, 0.08)';
+                envelopeClose.style.display = 'none';
+            });
+
+
+
     </script>
 
 </body>
